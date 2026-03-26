@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  jste.csl
+  交通工学研究発表会講演集 参考文献スタイル
+  Japan Society of Traffic Engineers – Conference Proceedings
+  CSL 1.0.2 / Typst 対応
+
+  和文・英文の両対応:
+    langid フィールドなし（和文）: 著者区切り "・"、姓名順
+    langid = {english}（英文）: "Smith, John and Jones, Mary" 形式
+-->
+<style xmlns="http://purl.org/net/xbiblio/csl"
+       class="in-text"
+       version="1.0"
+       default-locale="ja-JP">
+
+  <info>
+    <title>Japan Society of Traffic Engineers</title>
+    <title-short>JSTE</title-short>
+    <id>urn:jste:proceedings</id>
+    <category citation-format="numeric"/>
+    <category field="engineering"/>
+    <updated>2024-01-01T00:00:00+00:00</updated>
+  </info>
+
+  <!-- "and" 語を英語に固定（locale が ja-JP でも "and" を使用） -->
+  <locale>
+    <terms>
+      <term name="and">and</term>
+    </terms>
+  </locale>
+
+  <!-- ===================================================================
+       マクロ：著者名（言語切り替え）
+         langid なし（和文）→ 著者名・著者名 （・区切り）
+         langid = english  → Last, First and Last, First
+       =================================================================== -->
+  <macro name="author-names">
+    <choose>
+      <if variable="language">
+        <!-- 英文エントリ：Last, First and Last, First 形式 -->
+        <names variable="author" suffix="：">
+          <name delimiter=", "
+                and="text"
+                name-as-sort-order="all"
+                sort-separator=", "/>
+          <substitute>
+            <names variable="editor"/>
+            <text variable="title"/>
+          </substitute>
+        </names>
+      </if>
+      <else>
+        <!-- 和文エントリ：著者名・著者名 形式（JSTE 標準） -->
+        <names variable="author" suffix="：">
+          <name delimiter="・"
+                name-as-sort-order="all"
+                sort-separator=", "/>
+          <substitute>
+            <names variable="editor"/>
+            <text variable="title"/>
+          </substitute>
+        </names>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- ===================================================================
+       マクロ：編著者名（言語切り替え）
+       =================================================================== -->
+  <macro name="editor-names">
+    <choose>
+      <if variable="language">
+        <names variable="editor" prefix="(" suffix=")">
+          <name delimiter=", "
+                and="text"
+                name-as-sort-order="all"
+                sort-separator=", "/>
+        </names>
+      </if>
+      <else>
+        <names variable="editor" prefix="（" suffix="）">
+          <name delimiter="・"
+                name-as-sort-order="all"
+                sort-separator=", "/>
+        </names>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- ===================================================================
+       マクロ：ページ数
+         和文・英文ともに pp. プレフィックスを付与（土木学会・JSTE 標準）
+       =================================================================== -->
+  <macro name="page-number">
+    <text variable="page" prefix="pp. " suffix="，"/>
+  </macro>
+
+  <!-- ===================================================================
+       マクロ：Webページ本体
+         @online が CSL の webpage 型にマップされない処理系でも
+         <else-if variable="URL"> で同じ出力を得るために共通化。
+         末尾は「）」で終わるため「．」は付与しない。
+       =================================================================== -->
+  <macro name="web-body">
+    <text variable="title" suffix="，"/>
+    <!-- サイト名：@online の publisher フィールドが第一候補 -->
+    <choose>
+      <if variable="publisher">
+        <text variable="publisher" suffix="，"/>
+      </if>
+      <else>
+        <text variable="container-title" suffix="，"/>
+      </else>
+    </choose>
+    <text variable="URL" suffix="，"/>
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+    <!-- 閲覧日 -->
+    <choose>
+      <if variable="accessed">
+        <date variable="accessed" prefix="．（閲覧" suffix="）">
+          <date-part name="year" suffix="年"/>
+          <date-part name="month" suffix="月"/>
+          <date-part name="day" suffix="日"/>
+        </date>
+      </if>
+      <else>
+        <text value="．（閲覧年月日）"/>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- ===================================================================
+       本文中引用：上付き番号＋右丸括弧  例） … である1)。
+       =================================================================== -->
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout vertical-align="sup" suffix=")">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <!-- ===================================================================
+       参考文献リスト
+       hanging-indent + second-field-align で番号がぶら下がる字下げを実現。
+       末尾の「．」は各分岐で明示（Webページは「）」で終わるため付与しない）。
+
+       書式（和文）：
+         書籍    著者名：単行本名，出版元，発表年．
+         章節    著者名：担当箇所題目，単行本名（編著者名），出版元，pp. 開始-終了，発表年．
+         論文    著者名：論文題目，掲載誌名，Vol. x, No. x，pp. 開始-終了，発表年．
+         Web     著者名：記事題目，Webサイト名，URL，発表年．（閲覧年月日）
+
+       書式（英文・langid = {english}）：
+         書籍    Last, First: Title, Publisher, Year.
+         章節    Last, First: Chapter Title, Book Title (Ed. Last, First), Publisher, pp. x-y, Year.
+         論文    Last, First: Title, Journal, Vol. x, No. x, pp. x-y, Year.
+         Web     Last, First: Title, Site Name, URL, Year. (accessed Year/Month/Day)
+       =================================================================== -->
+  <bibliography hanging-indent="true" second-field-align="flush">
+    <!-- suffix="" ：末尾の「．」は各分岐で明示 -->
+    <layout>
+      <!-- 番号： 1)  2) … -->
+      <text variable="citation-number" suffix=") "/>
+
+      <!-- 著者名（言語条件切り替え） -->
+      <text macro="author-names"/>
+
+      <!-- 文献種別ごとのフォーマット -->
+      <choose>
+
+        <!-- 雑誌論文 -->
+        <if type="article-journal">
+          <text variable="title" suffix="，"/>
+          <text variable="container-title" suffix="，"/>
+          <!-- Vol. x, No. x 形式：号がない場合は Vol. x のみ出力 -->
+          <group suffix="，">
+            <text variable="volume" prefix="Vol. "/>
+            <text variable="issue" prefix=", No. "/>
+          </group>
+          <text macro="page-number"/>
+          <date variable="issued">
+            <date-part name="year"/>
+          </date>
+          <text value="．"/>
+        </if>
+
+        <!-- 書籍の章・節（@incollection） -->
+        <else-if type="chapter">
+          <text variable="title" suffix="，"/>
+          <!-- 単行本名（編著者名） -->
+          <group suffix="，">
+            <text variable="container-title"/>
+            <text macro="editor-names"/>
+          </group>
+          <text variable="publisher" suffix="，"/>
+          <text macro="page-number"/>
+          <date variable="issued">
+            <date-part name="year"/>
+          </date>
+          <text value="．"/>
+        </else-if>
+
+        <!-- Webページ（@online が CSL webpage 型にマップされた場合） -->
+        <else-if type="webpage post post-weblog">
+          <text macro="web-body"/>
+        </else-if>
+
+        <!-- URL 変数がある場合の fallback
+             （@online が misc 等にマップされる処理系向け） -->
+        <else-if variable="URL">
+          <text macro="web-body"/>
+        </else-if>
+
+        <!-- 単行本（@book，その他） -->
+        <else>
+          <text variable="title" suffix="，"/>
+          <text variable="publisher" suffix="，"/>
+          <date variable="issued">
+            <date-part name="year"/>
+          </date>
+          <text value="．"/>
+        </else>
+
+      </choose>
+    </layout>
+  </bibliography>
+
+</style>
