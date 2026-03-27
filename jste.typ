@@ -88,20 +88,17 @@
   // レイアウト定数
   //   font-size : 本文フォントサイズ（仕様：10pt）
   //   leading   : 行間（259mm ÷ 48行 − 10pt ≈ 5.3pt）
-  //   footer-font-size : フッターフォントサイズ
   // -------------------------------------------------------------------
   let font-size = 10pt
   // leading: Typst の leading はフォント描画高さ（ascender+descender）と次行の間の余白
   // 実測より font 描画高さ ≈ 6.6pt（font-size=10pt とは異なる）のため、
   // 48行に必要な leading = (259mm÷48) − 6.6pt ≈ 15.3pt − 6.6pt = 8.7pt
   let leading = 8.7pt
-  let footer-font-size = 9pt
 
   // -------------------------------------------------------------------
   // 著者所属フッターのコンテンツ定義（高さ計算と実描画で共用）
   // -------------------------------------------------------------------
   let affil-grid = {
-    set text(size: footer-font-size)
     set par(first-line-indent: 0pt, leading: leading)
     grid(
       columns: (2em, 1fr),
@@ -123,10 +120,18 @@
   // -------------------------------------------------------------------
   // テキスト・段落デフォルト
   // -------------------------------------------------------------------
-  set text(font: serif, size: font-size, lang: "ja", tracking: -0.076em)
+  // tracking: 列幅 = (170mm − gutter 2em) ÷ 2 = 230.945pt
+  // Typst の tracking は文字間隔型（N文字 → N-1 個の隙間）のため：
+  //   25 × 10pt + 24 × tracking = 230.945pt → tracking = −0.794pt
+  // 余裕を持たせて −0.8pt を採用
+  // pt で定義することで first-line-indent との加算が可能になる
+  let tracking = -0.8pt
+  set text(font: serif, size: font-size, lang: "ja", tracking: tracking)
   set par(
     justify: true,
-    first-line-indent: (amount: 1em, all: true),
+    // 字下げ幅 = 1文字ピッチ（font-size + tracking）
+    // 1em のままだと tracking 分（0.77pt）だけ広くなり、字下げ行が1文字分はみ出す
+    first-line-indent: (amount: font-size + tracking, all: true),
     leading: leading,
     spacing: leading,
   )
