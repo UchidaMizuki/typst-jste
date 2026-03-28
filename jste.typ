@@ -160,6 +160,7 @@
     set text(font: sans, size: 10pt, weight: "regular")
     if it.numbering != none {
       context counter(heading).display(it.numbering)
+      if it.level == 2 { h(1em) }
     }
     it.body
   }
