@@ -103,6 +103,7 @@
     grid(
       columns: (2em, 1fr),
       row-gutter: leading,
+      align: top,
       ..affiliations.enumerate().map(((i, aff)) => (str(i + 1), aff)).flatten()
     )
   }
