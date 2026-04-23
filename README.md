@@ -95,8 +95,8 @@ In-text citations use superscript numbers (e.g., `@wardrop1952` → ¹⁾).
 
 Add entries to `refs.bib` following these conventions:
 
-- **Japanese authors:** wrap names in double braces to prevent name parsing: `{{交通 太郎}}`
-- **English authors:** use standard BibTeX `Last, First` format: `{Wardrop, John Glen}`
+- **Japanese authors:** use standard BibTeX `Last, First` format: `{交通, 太郎}` for 交通太郎
+- **English authors:** use standard BibTeX `Last, First` format: `{Smith, John}`
 - **English entries:** add `langid = {english}` to switch to English formatting (comma-separated authors with "and")
 - **Page ranges:** use `--` (e.g., `pages = {325--362}`)
 - **Web entries:** use `@online` type with `publisher` for the site name and `urldate` in ISO 8601 format
@@ -129,6 +129,8 @@ See `refs.bib` for examples of all four reference types (book, book chapter, jou
 ```
 
 英文文献には `langid = {english}` を付与することで、著者区切りが `・` から `, and` 形式に切り替わります。
+
+和文・英文ともに標準 BibTeX の「姓, 名」形式（例：`{交通, 太郎}`、`{Smith, John}`）で記載します。
 
 ### 免責事項
 
