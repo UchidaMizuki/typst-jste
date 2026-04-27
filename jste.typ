@@ -185,9 +185,14 @@
   // -------------------------------------------------------------------
   set math.equation(numbering: "(1)", supplement: "式")
 
-  // 図表参照はサンセリフ体（式参照はセリフ体のまま）
+  // 図表参照はサンセリフ体・数式参照は式(n)形式
   show ref: it => {
-    if it.element != none and it.element.func() == figure {
+    let el = it.element
+    if el != none and el.func() == math.equation {
+      // numbering() で "(1)" 書式を適用し「式(1)」と表示
+      let n = numbering(el.numbering, ..counter(math.equation).at(el.location()))
+      link(el.location())[式#n]
+    } else if el != none and el.func() == figure {
       text(font: sans)[#it]
     } else {
       it

@@ -6,7 +6,7 @@
   CSL 1.0.2 / Typst 対応
 
   和文・英文の両対応:
-    langid フィールドなし（和文）: 著者区切り "・"、全角区切り
+    langid フィールドなし（和文）: 著者区切り "，"、全角区切り
     langid = {english}（英文）: "Last, First and ..." 形式、半角区切り
 
   著者名の入力形式（和文・英文とも標準 BibTeX の「姓, 名」形式）:
@@ -51,7 +51,7 @@
 
   <!-- ===================================================================
        マクロ：著者名（言語切り替え）
-         和文 → 姓 名・姓 名：
+         和文 → 姓 名，姓 名：
          英文 → Last, First and Last, First:
        =================================================================== -->
   <macro name="author-names">
@@ -62,7 +62,8 @@
           <name delimiter=", "
                 and="text"
                 name-as-sort-order="all"
-                sort-separator=", "/>
+                sort-separator=", "
+                initialize-with=". "/>
           <substitute>
             <names variable="editor"/>
             <text variable="title"/>
@@ -72,7 +73,7 @@
       <else>
         <!-- 和文：全角コロンで区切る -->
         <names variable="author" suffix="：">
-          <name delimiter="・"
+          <name delimiter="，"
                 delimiter-precedes-last="always"
                 name-as-sort-order="all"
                 sort-separator=" "/>
@@ -97,12 +98,13 @@
           <name delimiter=", "
                 and="text"
                 name-as-sort-order="all"
-                sort-separator=", "/>
+                sort-separator=", "
+                initialize-with=". "/>
         </names>
       </if>
       <else>
         <names variable="editor" prefix="（" suffix="）">
-          <name delimiter="・"
+          <name delimiter="，"
                 delimiter-precedes-last="always"
                 name-as-sort-order="all"
                 sort-separator=" "/>
