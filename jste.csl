@@ -193,7 +193,7 @@
     <sort>
       <key variable="citation-number"/>
     </sort>
-    <layout vertical-align="sup" suffix=")">
+    <layout vertical-align="sup" suffix=")" delimiter=", ">
       <text variable="citation-number"/>
     </layout>
   </citation>
