@@ -222,7 +222,7 @@
 
   // 和文概要（左右1cmインデント・両端揃え・段落頭1字下げ）
   {
-    set par(first-line-indent: 1em, justify: true)
+    set par(first-line-indent: (amount: 1em, all: true), justify: true)
     block(width: 100%, inset: (left: 1cm, right: 1cm))[#abstract]
   }
 
