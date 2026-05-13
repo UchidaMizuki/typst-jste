@@ -1,4 +1,4 @@
-# typst-jste
+# steady-jste
 
 Unofficial [Typst](https://typst.app/) template for the **Japan Society of Traffic Engineers (JSTE) Conference Proceedings** (交通工学研究発表会講演集).
 
@@ -27,13 +27,13 @@ Unofficial [Typst](https://typst.app/) template for the **Japan Society of Traff
 ## Usage
 
 ```sh
-typst init @preview/jste
+typst init @preview/steady-jste
 ```
 
 Or copy `template/` contents manually, then edit `main.typ`:
 
 ```typst
-#import "@preview/jste:0.1.0": *
+#import "@preview/steady-jste:0.1.0": *
 
 #show: jste.with(
   title-ja: [論文題目（和文）],
@@ -72,14 +72,14 @@ typst compile main.typ
 
 ## Local Development
 
-Install the package under the `preview` namespace so `@preview/jste:0.1.0` resolves locally without any changes to the import path:
+Install the package under the `preview` namespace so `@preview/steady-jste:0.1.0` resolves locally without any changes to the import path:
 
 ```sh
 # Windows
 xcopy /E /I . "%APPDATA%\typst\packages\preview\jste\0.1.0"
 
 # macOS / Linux
-cp -r . ~/.local/share/typst/packages/preview/jste/0.1.0
+cp -r . ~/.local/share/typst/packages/preview/steady-jste/0.1.0
 ```
 
 Then compile normally:
@@ -141,7 +141,7 @@ See `refs.bib` for examples of all four reference types (book, book chapter, jou
 
 ### 使い方
 
-`jste.typ`、`jste.csl`、`refs.bib` をプロジェクトにコピーし、上記の Usage セクションを参考に原稿ファイルを作成してください。`main.typ` がサンプル原稿です。
+`template/` の内容をプロジェクトにコピーし、上記の Usage セクションを参考に原稿ファイルを作成してください。`main.typ` がサンプル原稿です。
 
 ### 参考文献
 
