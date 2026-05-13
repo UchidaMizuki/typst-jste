@@ -1,4 +1,3 @@
-// lib.typ
 // 交通工学研究発表会講演集 Typst テンプレート（書式見本①）
 // Japan Society of Traffic Engineers – Conference Proceedings Template
 
@@ -175,10 +174,6 @@
   show figure.where(kind: table): set figure.caption(position: top)
   set figure.caption(separator: box(width: 1em))
   show figure.caption: set text(font: sans)
-  // キャプション末尾の par.spacing を除去（figure ブロック外の段落間隔は block.below が担う）
-  // show figure.caption: set par(spacing: 0pt)
-  // 図表ブロック前後の余白を本文行間と揃える
-  // show figure: set block(above: leading, below: leading)
 
   // -------------------------------------------------------------------
   // 数式：中央揃え・式番号右寄せ
