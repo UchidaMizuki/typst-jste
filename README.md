@@ -26,10 +26,14 @@ Unofficial [Typst](https://typst.app/) template for the **Japan Society of Traff
 
 ## Usage
 
-Copy `jste.typ`, `jste.csl`, and `refs.bib` into your project, then create your manuscript:
+```sh
+typst init @preview/jste
+```
+
+Or copy `template/` contents manually, then edit `main.typ`:
 
 ```typst
-#import "jste.typ": *
+#import "@preview/jste:0.1.0": *
 
 #show: jste.with(
   title-ja: [論文題目（和文）],
@@ -66,14 +70,33 @@ Compile with:
 typst compile main.typ
 ```
 
+## Local Development
+
+Install the package under the `preview` namespace so `@preview/jste:0.1.0` resolves locally without any changes to the import path:
+
+```sh
+# Windows
+xcopy /E /I . "%APPDATA%\typst\packages\preview\jste\0.1.0"
+
+# macOS / Linux
+cp -r . ~/.local/share/typst/packages/preview/jste/0.1.0
+```
+
+Then compile normally:
+
+```sh
+typst compile template/main.typ
+```
+
 ## File Structure
 
 | File | Description |
 |---|---|
-| `jste.typ` | Template (import this in your manuscript) |
-| `jste.csl` | CSL bibliography style |
-| `refs.bib` | Sample bibliography entries |
-| `main.typ` | Sample manuscript |
+| `typst.toml` | Package manifest (Typst Universe) |
+| `lib.typ` | Package entry point (import this in your manuscript) |
+| `template/main.typ` | Sample manuscript |
+| `template/jste.csl` | CSL bibliography style |
+| `template/refs.bib` | Sample bibliography entries |
 
 ## Parameters
 
