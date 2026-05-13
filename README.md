@@ -72,14 +72,10 @@ typst compile main.typ
 
 ## Local Development
 
-Install the package under the `preview` namespace so `@preview/steady-jste:0.1.0` resolves locally without any changes to the import path:
+Install [utpm](https://github.com/typst-community/utpm) and run the following command to symlink the package so `@preview/steady-jste:0.1.0` resolves locally without any changes to the import path:
 
 ```sh
-# Windows
-xcopy /E /I . "%APPDATA%\typst\packages\preview\jste\0.1.0"
-
-# macOS / Linux
-cp -r . ~/.local/share/typst/packages/preview/steady-jste/0.1.0
+utpm prj link
 ```
 
 Then compile normally:
@@ -93,7 +89,7 @@ typst compile template/main.typ
 | File | Description |
 |---|---|
 | `typst.toml` | Package manifest (Typst Universe) |
-| `lib.typ` | Package entry point (import this in your manuscript) |
+| `lib.typ` | Package library (exported as `@preview/steady-jste:0.1.0`) |
 | `template/main.typ` | Sample manuscript |
 | `template/jste.csl` | CSL bibliography style |
 | `template/refs.bib` | Sample bibliography entries |
@@ -111,6 +107,12 @@ typst compile template/main.typ
 | `keywords` | array | Keywords (up to 5) |
 | `font-serif` | auto \| array | Serif font override (default: OS fallback list) |
 | `font-sans` | auto \| array | Sans-serif font override (default: OS fallback list) |
+
+## Helper Functions
+
+| Function | Description |
+|---|---|
+| `jste-note(n)` | Superscript footnote marker for supplementary notes (e.g., `#jste-note(1)` → \*1) |
 
 ## Bibliography
 
