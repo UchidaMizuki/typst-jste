@@ -26,10 +26,10 @@ Unofficial [Typst](https://typst.app/) template for the **Japan Society of Traff
 
 ## Usage
 
-Copy `jste.typ`, `jste.csl`, and `refs.bib` into your project, then create your manuscript:
+Copy `template/` contents into your project, then edit `main.typ`:
 
 ```typst
-#import "jste.typ": *
+#import "../lib.typ": *
 
 #show: jste.with(
   title-ja: [論文題目（和文）],
@@ -70,10 +70,11 @@ typst compile main.typ
 
 | File | Description |
 |---|---|
-| `jste.typ` | Template (import this in your manuscript) |
-| `jste.csl` | CSL bibliography style |
-| `refs.bib` | Sample bibliography entries |
-| `main.typ` | Sample manuscript |
+| `typst.toml` | Package manifest (Typst Universe) |
+| `lib.typ` | Package entry point (import this in your manuscript) |
+| `template/main.typ` | Sample manuscript |
+| `template/jste.csl` | CSL bibliography style |
+| `template/refs.bib` | Sample bibliography entries |
 
 ## Parameters
 

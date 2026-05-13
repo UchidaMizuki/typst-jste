@@ -1,0 +1,15 @@
+[package]
+name = "jste"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["UchidaMizuki"]
+license = "MIT"
+description = "Unofficial Typst template for JSTE Conference Proceedings (交通工学研究発表会講演集)"
+repository = "https://github.com/UchidaMizuki/typst-jste"
+keywords = ["paper", "template", "japanese"]
+categories = ["paper"]
+compiler = "0.12.0"
+
+[template]
+path = "template"
+entrypoint = "main.typ"
