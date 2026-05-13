@@ -72,17 +72,21 @@ typst compile main.typ
 
 ## Local Development
 
-To work on this package locally before publishing to Typst Universe, install it as a local package:
+Install the package under the `preview` namespace so `@preview/jste:0.1.0` resolves locally without any changes to the import path:
 
 ```sh
 # Windows
-xcopy /E /I . "%APPDATA%\typst\packages\local\jste\0.1.0"
+xcopy /E /I . "%APPDATA%\typst\packages\preview\jste\0.1.0"
 
 # macOS / Linux
-cp -r . ~/.local/share/typst/packages/local/jste/0.1.0
+cp -r . ~/.local/share/typst/packages/preview/jste/0.1.0
 ```
 
-Then import with `@local/jste:0.1.0` instead of `@preview/jste:0.1.0`.
+Then compile normally:
+
+```sh
+typst compile template/main.typ
+```
 
 ## File Structure
 
