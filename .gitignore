@@ -1,3 +1,6 @@
+# Typst build output
+*.pdf
+
 # Claude Code
 .claude/worktrees/
 .claude/*.jsonl
