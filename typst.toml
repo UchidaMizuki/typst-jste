@@ -8,7 +8,7 @@ description = "Unofficial Typst template for JSTE Conference Proceedings (交通
 repository = "https://github.com/UchidaMizuki/typst-jste"
 keywords = ["paper", "template", "japanese"]
 categories = ["paper"]
-compiler = "0.12.0"
+compiler = "0.13.0"
 
 [template]
 path = "template"

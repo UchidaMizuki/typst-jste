@@ -77,8 +77,8 @@
   // フォント設定（auto = テンプレート既定のフォールバックリストを使用）
   font-serif: auto,
   font-sans: auto,
-  // 本文
-  body,
+  // 本文（Typst 0.13+ では #show: ルールが body を名前付き引数で渡す）
+  body: none,
 ) = {
   // フォント解決：auto の場合は既定フォールバックリストを使用
   let serif = if font-serif == auto { _serif } else { font-serif }
