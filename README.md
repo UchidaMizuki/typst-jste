@@ -72,13 +72,19 @@ typst compile main.typ
 
 ## Local Development
 
-Install [utpm](https://github.com/typst-community/utpm) and run the following command to symlink the package so `@preview/steady-jste:0.1.0` resolves locally without any changes to the import path:
+Install [utpm](https://github.com/typst-community/utpm) and run the following command to symlink the package under the `@local` namespace:
 
 ```sh
 utpm prj link
 ```
 
-Then compile normally:
+Then update the import in your manuscript to use the `@local` namespace:
+
+```typst
+#import "@local/steady-jste:0.1.0": *
+```
+
+And compile:
 
 ```sh
 typst compile template/main.typ
