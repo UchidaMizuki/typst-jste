@@ -1,9 +1,7 @@
 // main.typ
 // 交通工学研究発表会講演集 サンプル原稿
-// ローカル開発時：#import "../lib.typ": *
-// Typst Universe 公開後：#import "@preview/jste:0.1.0": *
 
-#import "../lib.typ": *
+#import "@preview/jste:0.1.0": *
 
 #show: jste.with(
   title-ja: [交通工学研究会　論文書式見本①],

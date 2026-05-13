@@ -26,10 +26,14 @@ Unofficial [Typst](https://typst.app/) template for the **Japan Society of Traff
 
 ## Usage
 
-Copy `template/` contents into your project, then edit `main.typ`:
+```sh
+typst init @preview/jste
+```
+
+Or copy `template/` contents manually, then edit `main.typ`:
 
 ```typst
-#import "../lib.typ": *
+#import "@preview/jste:0.1.0": *
 
 #show: jste.with(
   title-ja: [論文題目（和文）],
@@ -65,6 +69,20 @@ Compile with:
 ```sh
 typst compile main.typ
 ```
+
+## Local Development
+
+To work on this package locally before publishing to Typst Universe, install it as a local package:
+
+```sh
+# Windows
+xcopy /E /I . "%APPDATA%\typst\packages\local\jste\0.1.0"
+
+# macOS / Linux
+cp -r . ~/.local/share/typst/packages/local/jste/0.1.0
+```
+
+Then import with `@local/jste:0.1.0` instead of `@preview/jste:0.1.0`.
 
 ## File Structure
 
