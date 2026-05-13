@@ -1,4 +1,4 @@
-// jste.typ
+// lib.typ
 // 交通工学研究発表会講演集 Typst テンプレート（書式見本①）
 // Japan Society of Traffic Engineers – Conference Proceedings Template
 
