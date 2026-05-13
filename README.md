@@ -75,7 +75,7 @@ typst compile main.typ
 Install [utpm](https://github.com/typst-community/utpm) and run the following command to symlink the package so `@preview/steady-jste:0.1.0` resolves locally without any changes to the import path:
 
 ```sh
-utpm prj link
+utpm prj link preview
 ```
 
 Then compile normally:
