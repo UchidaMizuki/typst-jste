@@ -1,4 +1,4 @@
-# steady-jste
+# traffic-jste
 
 Unofficial [Typst](https://typst.app/) template for the **Japan Society of Traffic Engineers (JSTE) Conference Proceedings** (交通工学研究発表会講演集).
 
@@ -27,13 +27,13 @@ Unofficial [Typst](https://typst.app/) template for the **Japan Society of Traff
 ## Usage
 
 ```sh
-typst init @preview/steady-jste
+typst init @preview/traffic-jste
 ```
 
 Or copy `template/` contents manually, then edit `main.typ`:
 
 ```typst
-#import "@preview/steady-jste:0.1.0": *
+#import "@preview/traffic-jste:0.1.0": *
 
 #show: jste.with(
   title-ja: [論文題目（和文）],
@@ -72,7 +72,7 @@ typst compile main.typ
 
 ## Local Development
 
-Install [utpm](https://github.com/typst-community/utpm) and run the following command to symlink the package so `@preview/steady-jste:0.1.0` resolves locally without any changes to the import path:
+Install [utpm](https://github.com/typst-community/utpm) and run the following command to symlink the package so `@preview/traffic-jste:0.1.0` resolves locally without any changes to the import path:
 
 ```sh
 utpm prj link preview
@@ -89,7 +89,7 @@ typst compile template/main.typ
 | File | Description |
 |---|---|
 | `typst.toml` | Package manifest (Typst Universe) |
-| `lib.typ` | Package library (exported as `@preview/steady-jste:0.1.0`) |
+| `lib.typ` | Package library (exported as `@preview/traffic-jste:0.1.0`) |
 | `template/main.typ` | Sample manuscript |
 | `template/jste.csl` | CSL bibliography style |
 | `template/refs.bib` | Sample bibliography entries |
