@@ -1,7 +1,7 @@
 // main.typ
 // 交通工学研究発表会講演集 サンプル原稿
 
-#import "@preview/traffic-jste:0.1.0": *
+#import "@preview/traffic-jste:0.2.0": *
 
 #show: jste.with(
   title-ja: [交通工学研究会　論文書式見本①],

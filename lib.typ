@@ -1,5 +1,8 @@
-// 交通工学研究発表会講演集 Typst テンプレート（書式見本①）
-// Japan Society of Traffic Engineers – Conference Proceedings Template
+// 交通工学研究会 論文書式 Typst テンプレート
+// - 書式見本①（交通工学研究発表会講演集）: abstract-en / keywords-en を省略
+// - 書式見本②（交通工学論文集(特集号A)・研究論文）: abstract-en / keywords-en を指定
+//   （所属等・概要が和文・英文とも必要な点のみ①と異なり、それ以外の版面仕様は共通）
+// Japan Society of Traffic Engineers – Paper Format Template (formats ①/②)
 
 // =====================================================================
 // フォント定義
@@ -71,8 +74,12 @@
   affiliations: (),
   // 和文概要（300～350字）
   abstract: [],
-  // キーワード（最大5つの配列）
+  // 英文概要（150～200語、書式②③のみ必須。空なら非表示）
+  abstract-en: [],
+  // キーワード（和文、最大5つの配列）
   keywords: (),
+  // キーワード（英文、最大5つの配列。書式②③のみ必須。空なら非表示）
+  keywords-en: (),
   // フォント設定（auto = テンプレート既定のフォールバックリストを使用）
   font-serif: auto,
   font-sans: auto,
@@ -142,7 +149,9 @@
   //   章 ：１．２．３．…（全角）
   //   節 ：1.1  1.2  1.3 …（半角）
   //   項 ：(1) (2) (3) …
+  // PDFファイル作成上の留意点（しおり非設定）に従い、PDF栞（アウトライン）を生成しない
   // -------------------------------------------------------------------
+  set heading(outlined: false)
   set heading(numbering: (..nums) => {
     let n = nums.pos()
     if n.len() == 1 {
@@ -221,15 +230,27 @@
     block(width: 100%, inset: (left: 1cm, right: 1cm))[#abstract]
   }
 
+  // 英文概要（書式②③のみ・150～200語、和文概要の直後に1行空けて配置）
+  if abstract-en != [] {
+    v(1em)
+    {
+      set par(first-line-indent: (amount: 1em, all: true), justify: true)
+      block(width: 100%, inset: (left: 1cm, right: 1cm))[#abstract-en]
+    }
+  }
+
   v(1em)
 
-  // キーワード（左右1cmインデント）
+  // キーワード（和文・英文、左右1cmインデント）
   {
     set par(first-line-indent: 0pt)
     block(width: 100%, inset: (left: 1cm, right: 1cm))[
       #text(style: "italic", weight: "bold")[Keywords: ]
       #h(0.25em)
       #keywords.join("，")
+      #if keywords-en != () [
+        \ #keywords-en.join(", ")
+      ]
     ]
   }
 

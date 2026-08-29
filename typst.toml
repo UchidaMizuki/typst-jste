@@ -1,10 +1,10 @@
 [package]
 name = "traffic-jste"
-version = "0.1.0"
+version = "0.2.0"
 entrypoint = "lib.typ"
 authors = ["UchidaMizuki"]
 license = "MIT"
-description = "Unofficial Typst template for JSTE Conference Proceedings (交通工学研究発表会講演集)"
+description = "Unofficial Typst template for JSTE Conference Proceedings and Journal (交通工学研究発表会講演集・交通工学論文集)"
 repository = "https://github.com/UchidaMizuki/typst-jste"
 keywords = ["paper", "template", "japanese"]
 categories = ["paper"]

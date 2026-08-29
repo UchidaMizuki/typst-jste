@@ -1,8 +1,20 @@
 # traffic-jste
 
-Unofficial [Typst](https://typst.app/) template for the **Japan Society of Traffic Engineers (JSTE) Conference Proceedings** (交通工学研究発表会講演集).
+Unofficial [Typst](https://typst.app/) template for JSTE (Japan Society of Traffic Engineers) manuscripts: **Conference Proceedings** (交通工学研究発表会講演集, format①) and the **Journal / Special Issue** (交通工学論文集(特集号), format②/③).
 
 > **Note:** This is an unofficial template. Always check the [official submission guidelines](https://www.jste.or.jp/) before submitting.
+
+## Format① / ② / ③
+
+JSTE uses three manuscript formats sharing the same page geometry (A4, 25 chars × 2 cols × 48 lines, 19/20mm margins). Only format② (research papers submitted to the journal / special issue A) requires a bilingual affiliation block and abstract; formats① and③ are Japanese-only and, as far as this template's layout is concerned, identical:
+
+| | Format① (講演集) | Format② (論文集(分野1)・特集号A, 研究論文) | Format③ (論文集(分野2)・特集号B, 実務論文) |
+|---|---|---|---|
+| Affiliations | Japanese only | Japanese **and** English | Japanese only |
+| Abstract | Japanese only | Japanese **and** English (150–200 words) | Japanese only (no English abstract) |
+| Keywords | Japanese only | Japanese **and** English | Japanese only |
+
+Pass `abstract-en` and `keywords-en` to switch on the format② layout; leave them empty (the default) for format① **or** format③ — no other change is needed to target format③. For bilingual affiliations, just put the Japanese and English lines in the same `affiliations` entry separated by `\ ` (see the Usage example below).
 
 ---
 
@@ -33,7 +45,7 @@ typst init @preview/traffic-jste
 Or copy `template/` contents manually, then edit `main.typ`:
 
 ```typst
-#import "@preview/traffic-jste:0.1.0": *
+#import "@preview/traffic-jste:0.2.0": *
 
 #show: jste.with(
   title-ja: [論文題目（和文）],
@@ -72,7 +84,7 @@ typst compile main.typ
 
 ## Local Development
 
-Install [utpm](https://github.com/typst-community/utpm) and run the following command to symlink the package so `@preview/traffic-jste:0.1.0` resolves locally without any changes to the import path:
+Install [utpm](https://github.com/typst-community/utpm) and run the following command to symlink the package so `@preview/traffic-jste:0.2.0` resolves locally without any changes to the import path:
 
 ```sh
 utpm prj link preview
@@ -89,7 +101,7 @@ typst compile template/main.typ
 | File | Description |
 |---|---|
 | `typst.toml` | Package manifest (Typst Universe) |
-| `lib.typ` | Package library (exported as `@preview/traffic-jste:0.1.0`) |
+| `lib.typ` | Package library (exported as `@preview/traffic-jste:0.2.0`) |
 | `template/main.typ` | Sample manuscript |
 | `template/jste.csl` | CSL bibliography style |
 | `template/refs.bib` | Sample bibliography entries |
@@ -104,7 +116,9 @@ typst compile template/main.typ
 | `authors-en` | array | English author list `(name:, num:)` |
 | `affiliations` | array | Author affiliations (indexed from 1) |
 | `abstract` | content | Japanese abstract (300–350 characters) |
-| `keywords` | array | Keywords (up to 5) |
+| `abstract-en` | content | English abstract (150–200 words). Format②/③ only; omit for format① |
+| `keywords` | array | Japanese keywords (up to 5) |
+| `keywords-en` | array | English keywords (up to 5). Format②/③ only; omit for format① |
 | `font-serif` | auto \| array | Serif font override (default: OS fallback list) |
 | `font-sans` | auto \| array | Sans-serif font override (default: OS fallback list) |
 
