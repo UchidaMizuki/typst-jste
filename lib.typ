@@ -73,11 +73,11 @@
   // 著者所属  例：("学生会員，修士（工学），東都大学…", ...)
   affiliations: (),
   // 和文概要（300～350字）
-  abstract: [],
+  abstract-ja: [],
   // 英文概要（150～200語、書式②③のみ必須。空なら非表示）
   abstract-en: [],
   // キーワード（和文、最大5つの配列）
-  keywords: (),
+  keywords-ja: (),
   // キーワード（英文、最大5つの配列。書式②③のみ必須。空なら非表示）
   keywords-en: (),
   // フォント設定（auto = テンプレート既定のフォールバックリストを使用）
@@ -227,7 +227,7 @@
   // 和文概要（左右1cmインデント・両端揃え・段落頭1字下げ）
   {
     set par(first-line-indent: (amount: 1em, all: true), justify: true)
-    block(width: 100%, inset: (left: 1cm, right: 1cm))[#abstract]
+    block(width: 100%, inset: (left: 1cm, right: 1cm))[#abstract-ja]
   }
 
   // 英文概要（書式②③のみ・150～200語、和文概要の直後に1行空けて配置）
@@ -242,15 +242,24 @@
   v(1em)
 
   // キーワード（和文・英文、左右1cmインデント）
+  // 英文キーワードは「Keywords:」ラベル幅の分だけ右にずらし、和文キーワードの
+  // 開始位置に揃える（grid の auto 列でラベル幅を自動確保）
   {
     set par(first-line-indent: 0pt)
     block(width: 100%, inset: (left: 1cm, right: 1cm))[
-      #text(style: "italic", weight: "bold")[Keywords: ]
-      #h(0.25em)
-      #keywords.join("，")
-      #if keywords-en != () [
-        \ #keywords-en.join(", ")
-      ]
+      #grid(
+        columns: (auto, 1fr),
+        column-gutter: 0.25em,
+        align: top,
+        text(style: "italic", weight: "bold")[Keywords: ],
+        {
+          keywords-ja.join("，")
+          if keywords-en != () {
+            linebreak()
+            keywords-en.join(", ")
+          }
+        },
+      )
     ]
   }
 

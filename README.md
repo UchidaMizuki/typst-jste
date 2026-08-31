@@ -65,8 +65,8 @@ Or copy `template/` contents manually, then edit `main.typ`:
     [学生会員，修士（工学），○○大学大学院],
   ),
 
-  abstract: [ここに和文概要を300〜350字で記す。],
-  keywords: ("交通安全", "交通管理", "道路計画"),
+  abstract-ja: [ここに和文概要を300〜350字で記す。],
+  keywords-ja: ("交通安全", "交通管理", "道路計画"),
 )
 
 = はじめに
@@ -115,9 +115,9 @@ typst compile template/main.typ
 | `authors-ja` | array | Japanese author list `(name:, num:)` |
 | `authors-en` | array | English author list `(name:, num:)` |
 | `affiliations` | array | Author affiliations (indexed from 1) |
-| `abstract` | content | Japanese abstract (300–350 characters) |
+| `abstract-ja` | content | Japanese abstract (300–350 characters) |
 | `abstract-en` | content | English abstract (150–200 words). Format②/③ only; omit for format① |
-| `keywords` | array | Japanese keywords (up to 5) |
+| `keywords-ja` | array | Japanese keywords (up to 5) |
 | `keywords-en` | array | English keywords (up to 5). Format②/③ only; omit for format① |
 | `font-serif` | auto \| array | Serif font override (default: OS fallback list) |
 | `font-sans` | auto \| array | Sans-serif font override (default: OS fallback list) |
